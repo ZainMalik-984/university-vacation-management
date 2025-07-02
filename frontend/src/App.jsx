@@ -9,6 +9,9 @@ import RequestOTP from './pages/RequestOTP';
 import VerifyOTP from './pages/VerifyOTP';
 import AdminPenal from './pages/AdminPenal';
 import UserManagementPanel from './pages/UserManagementPenal';
+import VacationPanel from './pages/VacationPanel';
+import ClassesPanel from './pages/ClassesPenal';
+import VacationViewer from './pages/VacationViewer';
 
 function App() {
   return (
@@ -23,14 +26,32 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOTP />} />
 
           <Route path="/admin-panel" element={
-          <PrivateRoute allowedRoles={['admin']}>
-            <AdminPenal />
-          </PrivateRoute>
-        } />
+            <PrivateRoute allowedRoles={['admin']}>
+              <AdminPenal />
+            </PrivateRoute>
+          } />
 
           <Route path="/admin-panel/user" element={
             <PrivateRoute allowedRoles={['admin']}>
               <UserManagementPanel />
+            </PrivateRoute>
+          } />
+
+          <Route path="/admin-panel/vacation" element={
+            <PrivateRoute allowedRoles={['admin']}>
+              <VacationPanel />
+            </PrivateRoute>
+          } />
+
+          <Route path="/admin-panel/classes" element={
+            <PrivateRoute allowedRoles={['admin']}>
+              <ClassesPanel />
+            </PrivateRoute>
+          } />
+
+          <Route path="/vacations" element={
+            <PrivateRoute allowedRoles={['student', 'teacher']}>
+              <VacationViewer />
             </PrivateRoute>
           } />
         </Route>
