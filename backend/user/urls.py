@@ -9,7 +9,7 @@ registrationRoutes = router.urls
 
 urlpatterns = [
     path('', include(registrationRoutes) ),
-    path('register/admin/', view = views.registationAdminView.as_view() ),
+    path('registeration/admin/', view = views.registationAdminView.as_view() ),
     path('login/', view= views.loginView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', view= views.CookieTokenRefreshView.as_view(), name='token_refresh'),
     path('logout/', view= views.logoutView.as_view() ),

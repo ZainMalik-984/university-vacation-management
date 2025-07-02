@@ -1,11 +1,28 @@
-import { useState } from 'react';
-import { Bell } from 'lucide-react'; // optional icon library
+import { Bell } from 'lucide-react'; 
+import { useNavigate } from 'react-router-dom';
+import api from "../utils/axios";
+import { logout } from '../redux/authSlice';
+import { useDispatch, useSelector  } from 'react-redux';
+
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
+  const email = useSelector((state) => state.auth?.email);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleLogout = async () => {
+        try {
+            await api.post('/user/logout/');
+            dispatch(logout());
+            navigate('/');
+        } catch (err) {
+            console.error('Logout failed:', err);
+        }
+    };
 
   const handleAuthToggle = () => {
-    setIsLoggedIn(!isLoggedIn);
+    isLoggedIn ? handleLogout() : navigate('/')
   };
 
   return (
@@ -25,9 +42,9 @@ const Header = () => {
           </button>
 
           {/* Avatar (placeholder) */}
-          <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold">
-            Z
-          </div>
+          {isLoggedIn && <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold">
+            {email ? email[0] : 'a'}
+          </div>}
 
           {/* Login/Logout Button */}
           <button

@@ -11,7 +11,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://127.0.0.1:8000/api/user/register/admin/`, form);
+      await axios.post(`http://127.0.0.1:8000/api/user/registeration/admin/`, form);
       navigate('/');
     } catch (err) {
       alert('Signup failed');

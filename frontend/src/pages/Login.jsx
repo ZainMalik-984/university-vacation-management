@@ -18,9 +18,10 @@ function Login() {
     try {
       const res = await api.post('/user/login/', form);
       const role = res.data?.user?.role;
+      const email = res.data?.user?.email;
 
       if (role) {
-        dispatch(loginSuccess({ role }));
+        dispatch(loginSuccess({ role, email }));
         if (role === 'admin') {
           navigate('/admin-panel');
         } else {

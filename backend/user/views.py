@@ -19,9 +19,6 @@ class AdminUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = registrationUserSerializer
     permission_classes = [IsAdmin]
-
-    def post(self,req):
-        print(req.data)
     
 class registationAdminView(APIView):
     def post(self,req):
