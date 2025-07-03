@@ -3,7 +3,7 @@ import api from '../utils/axios';
 
 function VacationPanel() {
   const [vacations, setVacations] = useState([]);
-  const [vacationForm, setVacationForm] = useState({ start_date: '', end_date: '', reason: '' });
+  const [vacationForm, setVacationForm] = useState({ start_date: '', end_date: '', reason: ''});
   const [editingVacationId, setEditingVacationId] = useState(null);
 
   const fetchData = async () => {
@@ -19,18 +19,21 @@ function VacationPanel() {
     fetchData();
   }, []);
 
-  const handleChange = (e) =>
-    setVacationForm({ ...vacationForm, [e.target.name]: e.target.value });
+  const handleChange = (e) =>{
+    setVacationForm({ ...vacationForm, [e.target.name]: e.target.value })
+    console.log(vacationForm)
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingVacationId) {
+        vacationForm.id = editingVacationId
         await api.put(`/vacations/${editingVacationId}/`, vacationForm);
       } else {
         await api.post('/vacations/', vacationForm);
       }
-      setVacationForm({ start_date: '', end_date: '', reason: '' });
+      setVacationForm({ start_date: '', end_date: '', reason: ''});
       setEditingVacationId(null);
       fetchData();
     } catch (err) {
