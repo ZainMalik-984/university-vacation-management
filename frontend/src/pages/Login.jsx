@@ -40,7 +40,7 @@ function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-white">
       <div className="bg-white bg-opacity-90 backdrop-blur-md shadow-xl rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">Admin Login</h2>
+        <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">Login</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="email"
